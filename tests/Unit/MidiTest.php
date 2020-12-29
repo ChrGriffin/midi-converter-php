@@ -2,7 +2,7 @@
 
 namespace MidiConverter\Tests\Unit;
 
-use Midi;
+use MidiConverter\Midi;
 use MidiConverter\Tests\TestCase;
 
 class MidiTest extends TestCase

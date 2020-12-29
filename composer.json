@@ -17,6 +17,7 @@
     },
     "autoload": {
         "psr-4": {
+            "MidiConverter\\": "src",
             "MidiConverter\\Tests\\": "tests"
         },
         "files": [
