@@ -1,0 +1,17 @@
+{
+    "name": "chrgriffin/midi-converter-php",
+    "description": "Convert and manage MIDI files in PHP.",
+    "type": "library",
+    "license": "MIT",
+    "prefer-stable": true,
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Christian Griffin",
+            "email": "christian.griffin@live.com"
+        }
+    ],
+    "require": {
+        "php": "^5.6"
+    }
+}

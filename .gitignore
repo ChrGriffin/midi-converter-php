@@ -2,3 +2,5 @@
 *.ssc
 *.txt
 ~$*
+
+/vendor/
