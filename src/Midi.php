@@ -450,7 +450,7 @@ class Midi
         if ($ttype == 1) {//time as delta
             $str .= "TimestampType=Delta\n";
             $last = 0;
-            foreach ($track->data as $msgStr) {
+            foreach ($track->events as $msgStr) {
                 $msg = explode(' ', $msgStr);
                 $t = (int)$msg[0];
                 $msg[0] = $t - $last;
@@ -458,7 +458,7 @@ class Midi
                 $last = $t;
             }
         } else {
-            foreach ($track->data as $msg) {
+            foreach ($track->events as $msg) {
                 $str .= $msg . "\n";
             }
         }
