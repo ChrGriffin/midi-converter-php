@@ -172,12 +172,12 @@ class Midi
             array_pop($track);
             array_pop($track);
 
-            if ($track[0] == "TimestampType=Delta") {//delta
+            if ($track[0] == "TimestampType=Delta") { //delta
                 array_shift($track);
                 $track = _delta2Absolute($track);
             }
 
-            $tracks[] = $track;
+            $tracks[] = new Track($track);
         }
         $this->tracks = $tracks;
         $this->_findTempo();
@@ -224,7 +224,7 @@ class Midi
         }
 
         $tn = isset($tn) ? $tn : count($this->tracks);
-        $this->tracks[$tn] = $track;
+        $this->tracks[$tn] = new Track($track);
         if ($tn == 0) {
             $this->_findTempo();
         }
