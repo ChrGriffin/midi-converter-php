@@ -443,10 +443,6 @@ class Midi
         return $str;
     }
 
-//---------------------------------------------------------------
-// returns MIDI song as text
-//---------------------------------------------------------------
-
     function getTrackTxt($tn, int $ttype = 0): string
     {
         $track = $this->tracks[$tn];
