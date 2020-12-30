@@ -4,7 +4,10 @@ namespace MidiConverter;
 
 class Midi
 {
-    /** array of tracks, where each track is array of message strings */
+    /**
+     * array of tracks, where each track is array of message strings
+     * @var Track[]
+     */
     private array $tracks;
 
     /** ticks per frame (quarter note) */
@@ -451,7 +454,7 @@ class Midi
         if ($ttype == 1) {//time as delta
             $str .= "TimestampType=Delta\n";
             $last = 0;
-            foreach ($track as $msgStr) {
+            foreach ($track->data as $msgStr) {
                 $msg = explode(' ', $msgStr);
                 $t = (int)$msg[0];
                 $msg[0] = $t - $last;
@@ -459,7 +462,7 @@ class Midi
                 $last = $t;
             }
         } else {
-            foreach ($track as $msg) {
+            foreach ($track->data as $msg) {
                 $str .= $msg . "\n";
             }
         }
@@ -689,7 +692,7 @@ class Midi
         $this->tracks = $tracks;
     }
 
-    function _parseTrack($binStr, $tn)
+    function _parseTrack($binStr, $tn): Track
     {
         //$trackLen2 =  ((( (( (ord($binStr[0]) << 8) | ord($binStr[1]))<<8) | ord($binStr[2]) ) << 8 ) |  ord($binStr[3]) );
         //$trackLen2 += 4;
@@ -816,7 +819,7 @@ class Midi
                                     break;
                                 case 0x2F: // Meta TrkEnd
                                     $track[] = "$time Meta TrkEnd";
-                                    return $track;//ignore rest
+                                    return new Track($track);//ignore rest
                                     break;
                                 case 0x51: // Tempo
                                     $tempo = ord($binStr[$p + 3]) * 256 * 256 + ord($binStr[$p + 4]) * 256 + ord($binStr[$p + 5]);
@@ -928,7 +931,7 @@ class Midi
                     } // switch ($byte)
             } // switch ($high)
         } // while
-        return $track;
+        return new Track($track);
     }
 
     function saveMidFile(string $mid_path): void

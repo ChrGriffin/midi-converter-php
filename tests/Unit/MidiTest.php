@@ -55,7 +55,7 @@ class MidiTest extends TestCase
         return $file;
     }
 
-    /** @param false|resource $fileHandler */
+    /** @param resource $fileHandler */
     private function getTemporaryFilePath($fileHandler): string
     {
         return stream_get_meta_data($fileHandler)['uri'] ?? '';
